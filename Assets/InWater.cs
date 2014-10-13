@@ -4,7 +4,9 @@ using System.Collections;
 public class InWater : MonoBehaviour {
 
 	int gravityValue;
-	bool inWater;
+	public bool inWater;
+	public float rotationExit;
+	public float rotationEnter;
 
 	void Start() {
 		inWater = false;
@@ -38,10 +40,18 @@ public class InWater : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		inWater = true;
+		rotationEnter = this.transform.rotation.eulerAngles.z;
+		if ((rotationEnter <= rotationExit+10)||(rotationEnter >= rotationExit-10))
+		{
+			Debug.Log("Squalala");
+		}
+		//Debug.Log("Enter : " + this.transform.rotation.z);
 	}
 
 	void OnTriggerExit2D(Collider2D other)
 	{
 		inWater = false;
+		rotationExit = this.transform.rotation.eulerAngles.z;
+		//Debug.Log("Exit : " + rotationExit.ToString());
 	}
 }

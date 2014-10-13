@@ -38,7 +38,7 @@ public class Controlable : MonoBehaviour {
 			transform.Rotate(new Vector3(0,0,Input.GetAxis("L_XAxis_1"))* Time.deltaTime * rotationSpeed);
 			rigidbody2D.AddForce(transform.right * speed);
 			
-			if (Input.GetButton("A_1"))
+			if ((Input.GetButton("A_1"))&&(this.GetComponent<InWater>().inWater == true))
 			{
 				if(speed < maxSpeed)
 					speed+=2;
@@ -56,7 +56,7 @@ public class Controlable : MonoBehaviour {
 			transform.Rotate(new Vector3(0,0,Input.GetAxis("K_XAxis"))* Time.deltaTime * rotationSpeed);
 			rigidbody2D.AddForce(transform.right * speed);
 			
-			if (Input.GetButton("Space"))
+			if ((Input.GetButton("Space"))&&(this.GetComponent<InWater>().inWater == true))
 			{
 				if(speed < maxSpeed)
 					speed+=2;
