@@ -31,7 +31,7 @@ public class InWater : MonoBehaviour {
 
 		if(inWater == false)
 		{
-			if(gravityValue < 40)
+			if(gravityValue < 100)
 				gravityValue++;
 		}
 
