@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Controlable : MonoBehaviour {
 
-	public int speed;
+	int speed;
 	public int rotationSpeed;
 	public int maxSpeed;
 	bool controller;
