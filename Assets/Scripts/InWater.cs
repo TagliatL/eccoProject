@@ -8,12 +8,15 @@ public class InWater : MonoBehaviour {
 	public float rotationExit;
 	public float rotationEnter;
 	GameObject splashParticle;
+	GameObject swimParticle;
 
 	void Start() {
 		inWater = true;
 		gravityValue = 0;
 		splashParticle = GameObject.Find("Splash");
+		swimParticle = GameObject.Find("Swim");
 		splashParticle.SetActive(false);
+		swimParticle.SetActive(false);
 	}
 
 	
@@ -56,12 +59,14 @@ public class InWater : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D other)
 	{
-
+		swimParticle.SetActive(true);
 	}
 
 
 	void OnTriggerExit2D(Collider2D other)
 	{
+		swimParticle.SetActive(false);
+		splashParticle.SetActive(true);
 		splashParticle.transform.parent = this.transform;
 		splashParticle.transform.position = this.transform.position;
 		splashParticle.transform.localScale = new Vector3(1,1,1);
