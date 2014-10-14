@@ -10,8 +10,8 @@ public class InWater : MonoBehaviour {
 	GameObject splashParticle;
 
 	void Start() {
-		inWater = false;
-		gravityValue = 40;
+		inWater = true;
+		gravityValue = 0;
 		splashParticle = GameObject.Find("Splash");
 		splashParticle.SetActive(false);
 	}
@@ -29,14 +29,14 @@ public class InWater : MonoBehaviour {
 		if(inWater == true)
 		{
 			if(gravityValue > 0)
-				gravityValue--;
+				gravityValue-=2;
 		}
 
 		if(inWater == false)
 		{
 			splashParticle.SetActive(false);
 			if(gravityValue < 60)
-				gravityValue+=0.2f;
+				gravityValue+=0.5f;
 		}
 
 	}
@@ -44,6 +44,7 @@ public class InWater : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		splashParticle.SetActive(true);
+		splashParticle.transform.parent = null;
 		inWater = true;
 		rotationEnter = this.transform.rotation.eulerAngles.z;
 		if ((rotationEnter <= rotationExit+10)||(rotationEnter >= rotationExit-10))
@@ -56,6 +57,9 @@ public class InWater : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other)
 	{
+		splashParticle.transform.parent = this.transform;
+		splashParticle.transform.position = this.transform.position;
+		splashParticle.transform.localScale = new Vector3(1,1,1);
 		splashParticle.SetActive(true);
 		inWater = false;
 		rotationExit = this.transform.rotation.eulerAngles.z;

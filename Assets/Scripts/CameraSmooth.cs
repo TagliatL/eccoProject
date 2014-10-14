@@ -21,21 +21,31 @@ public class CameraSmooth : MonoBehaviour
 	{
 		thisTransform = transform;
 	}
+
+	void IsDead()
+	{
+		if(player.transform.position.y < -12)
+		{
+			cameraFollowX = false;
+
+			if(player.transform.position.y < -5)
+			{
+				player.transform.position = new Vector3(0,0,0);
+				player.rigidbody2D.gravityScale = 0;
+				cameraFollowX = true;
+				player.rigidbody2D.velocity = new Vector3(0, 0, 0);
+			}
+		}
+	}
 	
+
 	// Update is called once per frame
 	void Update()
 	{
+		IsDead();
 		if (cameraFollowX)
 		{
 			thisTransform.position = new Vector3(Mathf.SmoothDamp(thisTransform.position.x, cameraTarget.transform.position.x, ref velocity.x, smoothTime), Mathf.SmoothDamp(thisTransform.position.y, cameraTarget.transform.position.y, ref velocity.y, smoothTime), thisTransform.position.z);
-		}
-		if (cameraFollowY)
-		{
-
-		}
-		if (!cameraFollowX & cameraFollowHeight)
-		{
-			// to do
 		}
 	}
 }
