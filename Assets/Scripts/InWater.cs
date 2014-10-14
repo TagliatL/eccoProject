@@ -54,6 +54,11 @@ public class InWater : MonoBehaviour {
 		//Debug.Log("Enter : " + this.transform.rotation.z);
 	}
 
+	void OnTriggerStay2D(Collider2D other)
+	{
+
+	}
+
 
 	void OnTriggerExit2D(Collider2D other)
 	{
