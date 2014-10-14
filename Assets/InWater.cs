@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InWater : MonoBehaviour {
 
-	int gravityValue;
+	float gravityValue;
 	public bool inWater;
 	public float rotationExit;
 	public float rotationEnter;
@@ -31,8 +31,8 @@ public class InWater : MonoBehaviour {
 
 		if(inWater == false)
 		{
-			if(gravityValue < 100)
-				gravityValue++;
+			if(gravityValue < 60)
+				gravityValue+=0.2f;
 		}
 
 	}
